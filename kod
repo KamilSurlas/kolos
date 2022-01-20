@@ -1,0 +1,121 @@
+#include <iostream>
+#include <ctime>
+#include <iomanip>
+#include <cmath>
+
+
+#define Zadanie3 
+
+using namespace std;
+
+#ifdef Zadanie1
+int main()
+{
+	int a = 0,
+		b = 0,
+		i = 0,
+		najmniejsza = 1000000,
+		najwieksza = -1000000;
+	while (i < 5) {
+		cout << "Podaj liczby:";
+		cin >> a;
+		b = a;
+		if (a > 0)
+			i++;
+		else
+			i = 0;
+		if (a % 2 == 0) {
+			if (a < najmniejsza) {
+				najmniejsza = a;
+			}
+		}
+		else {
+			if (a > najwieksza) {
+				najwieksza = a;
+			}
+		}
+}
+	cout << "Najmniejsza: " << najmniejsza << " Najwieksza: " << najwieksza << endl;
+}
+
+#endif
+
+#ifdef Zadanie2
+int main()
+{
+	srand(time(0));
+	const int x = 7;
+	const int y = 9;
+	int liczby[x][y];
+
+	for (int wiersz = 0; wiersz < x; wiersz++)
+	{
+		for (int kolumna = 0; kolumna < y; kolumna++) {
+			liczby[wiersz][kolumna] = 2 * (rand() % 10 + 5);
+			cout << setw(4) << liczby[wiersz][kolumna];
+		}
+		cout << endl;
+	}
+
+	int* pierwszeM = &liczby[1][1];
+	int a = 0,
+		b = 0;
+	for (int wiersz = 0; wiersz < x; wiersz++)
+	{
+		for (int kolumna = 0; kolumna < y; kolumna++) {
+			if (*pierwszeM < liczby[wiersz][kolumna]) {
+				pierwszeM = &liczby[wiersz][kolumna];
+				a = wiersz;
+				b = kolumna;
+			}
+			if (*pierwszeM == liczby[wiersz][kolumna])
+				if (pierwszeM < &liczby[wiersz][kolumna]) {
+					pierwszeM = &liczby[wiersz][kolumna];
+					a = wiersz;
+					b = kolumna;
+				}
+		}
+	}
+
+	for (int wiersz = 0; wiersz < x; wiersz++)
+	{
+		for (int kolumna = 0; kolumna < y; kolumna++) {
+			if (wiersz == a || kolumna == b)
+				cout << setw(2) << "(" << liczby[wiersz][kolumna] << ")";
+			else
+				cout << setw(5) << liczby[wiersz][kolumna];
+		}
+		cout << endl;
+	}
+}
+#endif
+
+#ifdef Zadanie3
+int ileLiter(char * tekst, char znak)
+{	
+	int ile = 0;
+	for (int i = 0; i < 100; i++)
+	{
+		if (tekst[i] == znak)
+			ile++;
+		else if(!isalpha(tekst[i]))
+		{
+			cout << "invalid_argument";
+				break;
+		}
+	}
+	return ile;
+}
+
+int main() 
+{
+	char tekst[100];
+	cout << "Podaj tekst nie dluzszy niz 100 lier";
+	cin >> tekst;
+	cout << "W tekscie 'x' znajduje sie:" << ileLiter(tekst, 'x');
+}
+#endif
+
+#ifdef Zadanie4
+
+#endif
